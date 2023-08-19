@@ -242,8 +242,6 @@ namespace BuildTimeHistory
 
                     sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(todaysRecord.TotalBuildTime).Humanize()}");
 
-                    sb.AppendLine();
-
                     await OutputPane.Instance.WriteAsync(sb.ToString());
                 }
                 catch (Exception exc)
