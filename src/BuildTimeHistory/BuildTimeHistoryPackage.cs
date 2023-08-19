@@ -15,6 +15,17 @@ using Task = System.Threading.Tasks.Task;
 namespace BuildTimeHistory
 {
     [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+    // The following AuoLoad attributes are to make sure that all load scenarios are covered.
+    // Even launching a .slnf file from the JumpList (which was particularly hard to track down)
+    // I'm sure they're not all needed, but as I spent ages slowly adding more until everything worked
+    // I don't want to waste more time removing any.
+    [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionHasMultipleProjects, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionHasSingleProject, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.EmptySolution_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionOpening_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndFullyLoaded_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndNotBuildingAndNotDebugging_string, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(BuildTimeHistoryPackage.PackageGuidString)]
     public sealed class BuildTimeHistoryPackage : AsyncPackage, IVsSolutionEvents, IVsUpdateSolutionEvents2
