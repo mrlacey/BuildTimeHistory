@@ -9,4 +9,4 @@ Keep track of the total time spent waiting for code to build.
 
 A Visual Studio Extension that provides a summary history of all the time spent waiting for code to build each day.
 
-<!-- TODO: Add an example image. -->
+![Example output on the Output Window](./art/example-output.png)
