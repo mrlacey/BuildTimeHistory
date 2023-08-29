@@ -23,10 +23,9 @@ namespace BuildTimeHistory
         private static async Task ShowThanksForSponsorshipMessageAsync()
         {
             await OutputPane.Instance.WriteAsync("Thank you for your sponsorship. It really helps.");
-            // TODO: Uncomment once the repo is public
-            //await OutputPane.Instance.WriteAsync("If you have ideas for new features or suggestions for new features");
-            //await OutputPane.Instance.WriteAsync("please open or comment on an issue at https://github.com/mrlacey/BuildTimeHistory/issues");
-            //await OutputPane.Instance.WriteAsync(string.Empty);
+            await OutputPane.Instance.WriteAsync("If you have ideas for new features or suggestions for new features");
+            await OutputPane.Instance.WriteAsync("please open or comment on an issue at https://github.com/mrlacey/BuildTimeHistory/issues");
+            await OutputPane.Instance.WriteAsync(string.Empty);
         }
 
         private static async Task ShowPromptForSponsorshipAsync()
