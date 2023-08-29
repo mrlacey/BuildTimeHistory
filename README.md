@@ -15,6 +15,6 @@ A Visual Studio Extension that provides a summary history of all the time spent 
 
 If you enjoy using the extension, please give it a ★★★★★ rating on the Visual Studio Marketplace.
 
-Should you encounter bugs or if you have feature requests, go to [the GitHub repo to open an issue if one doesn't already exist](https://github.com/mrlacey/BuildTimeHistory/issues).
+If you encounter bugs or have feature requests, go to [the GitHub repo to open an issue if one doesn't already exist](https://github.com/mrlacey/BuildTimeHistory/issues).
 
 Another way to help is to [sponsor me on GitHub](https://github.com/sponsors/mrlacey).
