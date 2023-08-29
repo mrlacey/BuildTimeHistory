@@ -6,7 +6,7 @@
         <Description xml:space="preserve">Keep track of the total time spent waiting for code to build.</Description>
         <MoreInfo>https://github.com/mrlacey/BuildTimeHistory</MoreInfo>
         <License>LICENSE.txt</License>
-        <Icon>Resources\BuildTimerHistoryIcon.png</Icon>
+        <Icon>BuildTimerHistoryIcon.png</Icon>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
