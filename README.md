@@ -1,4 +1,4 @@
-# Build Time History
+﻿# Build Time History
 
 Keep track of the total time spent waiting for code to build.
 
@@ -10,3 +10,11 @@ Keep track of the total time spent waiting for code to build.
 A Visual Studio Extension that provides a summary history of all the time spent waiting for code to build each day.
 
 ![Example output on the Output Window](./art/example-output.png)
+
+## How can I help?
+
+If you enjoy using the extension, please give it a ★★★★★ rating on the Visual Studio Marketplace.
+
+Should you encounter bugs or if you have feature requests, go to [the GitHub repo to open an issue if one doesn't already exist](https://github.com/mrlacey/BuildTimeHistory/issues).
+
+Another way to help is to [sponsor me on GitHub](https://github.com/sponsors/mrlacey).
