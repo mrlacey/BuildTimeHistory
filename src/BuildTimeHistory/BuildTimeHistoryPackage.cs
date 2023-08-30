@@ -51,10 +51,7 @@ namespace BuildTimeHistory
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution2;
-            if (solution != null)
-            {
-                solution.AdviseSolutionEvents(this, out solutionEventsCookie);
-            }
+            solution?.AdviseSolutionEvents(this, out solutionEventsCookie);
 
             sbm = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager2;
             sbm?.AdviseUpdateSolutionEvents(this, out updateSolutionEventsCookie);
@@ -89,7 +86,7 @@ namespace BuildTimeHistory
                     sb.Append($"({latestRecord.SuccessCount} successful, {latestRecord.FailCount} failed, {latestRecord.CancelCount} cancelled) ");
                 }
 
-                sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(latestRecord.TotalBuildTime).Humanize()}");
+                sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(latestRecord.CalculatedTotalBuildTime).Humanize()}");
 
                 await OutputPane.Instance.WriteAsync(sb.ToString());
             }
@@ -217,6 +214,11 @@ namespace BuildTimeHistory
                     {
                         sb.AppendLine($"Build completed successfully after {TimeSpan.FromMilliseconds(buildDuration).Humanize()}");
                         todaysRecord.SuccessCount++;
+
+                        if (includeTimeInHistory)
+                        {
+                            todaysRecord.SuccessBuildTime += buildDuration;
+                        }
                     }
                     else
                     {
@@ -224,19 +226,25 @@ namespace BuildTimeHistory
                         {
                             sb.AppendLine($"Build was cancelled after {TimeSpan.FromMilliseconds(buildDuration).Humanize()}");
                             todaysRecord.CancelCount++;
+
+                            if (includeTimeInHistory)
+                            {
+                                todaysRecord.CancelBuildTime += buildDuration;
+                            }
                         }
                         else
                         {
                             sb.AppendLine($"Build failed after {TimeSpan.FromMilliseconds(buildDuration).Humanize()}");
                             todaysRecord.FailCount++;
+
+                            if (includeTimeInHistory)
+                            {
+                                todaysRecord.FailBuildTime += buildDuration;
+                            }
                         }
                     }
 
-                    if (includeTimeInHistory)
-                    {
-                        todaysRecord.TotalBuildTime += buildDuration;
-                    }
-                    else
+                    if (!includeTimeInHistory)
                     {
                         await OutputPane.Instance.WriteAsync("** Build time is unavailable and won't be added to the cumulative history.");
                     }
@@ -251,7 +259,7 @@ namespace BuildTimeHistory
                         sb.Append($"({todaysRecord.SuccessCount} successful, {todaysRecord.FailCount} failed, {todaysRecord.CancelCount} cancelled) ");
                     }
 
-                    sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(todaysRecord.TotalBuildTime).Humanize()}");
+                    sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(todaysRecord.CalculatedTotalBuildTime).Humanize()}");
 
                     await OutputPane.Instance.WriteAsync(sb.ToString());
                 }

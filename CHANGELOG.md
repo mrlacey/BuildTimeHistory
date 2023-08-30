@@ -2,7 +2,12 @@
 
 The following includes details of what has changed in each release.
 
-## 1.0 - September 2023
+
+## 1.1 - September 2023
+
+- Track successful, failed, and cancelled times separately.
+
+## 1.0 - August 2023
 
 - Improve extension loading.
 - Add icon.
