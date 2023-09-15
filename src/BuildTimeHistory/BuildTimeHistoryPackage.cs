@@ -28,6 +28,8 @@ namespace BuildTimeHistory
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndNotBuildingAndNotDebugging_string, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(BuildTimeHistoryPackage.PackageGuidString)]
+    [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideToolWindow(typeof(BuildHistoryWindow))]
     public sealed class BuildTimeHistoryPackage : AsyncPackage, IVsSolutionEvents, IVsUpdateSolutionEvents2
     {
         public const string PackageGuidString = "c0e7666d-0fc1-4e88-9c61-0468227a9922";
@@ -94,6 +96,7 @@ namespace BuildTimeHistory
             {
                 await OutputPane.Instance.WriteAsync("No previous history available.");
             }
+            await BuildHistoryWindowCommand.InitializeAsync(this);
         }
 
         public int OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded)
@@ -295,7 +298,7 @@ namespace BuildTimeHistory
             }
         }
 
-        private string GetHistoryFilePath(int daysPast = 0)
+        internal static string GetHistoryFilePath(int daysPast = 0)
         {
             var dateOfInterest = DateTime.Now.AddDays(-daysPast);
 
