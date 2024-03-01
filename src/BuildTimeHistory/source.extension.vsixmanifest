@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="TrackTimeBuilding.14cbbf05-c896-480f-b5dd-c8c55bf5fd6d" Version="1.1" Language="en-US" Publisher="Matt Lacey" />
+        <Identity Id="TrackTimeBuilding.14cbbf05-c896-480f-b5dd-c8c55bf5fd6d" Version="1.2" Language="en-US" Publisher="Matt Lacey" />
         <DisplayName>Build Time History</DisplayName>
         <Description xml:space="preserve">Keep track of the total time spent waiting for code to build.</Description>
         <MoreInfo>https://github.com/mrlacey/BuildTimeHistory</MoreInfo>

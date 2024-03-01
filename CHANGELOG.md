@@ -2,6 +2,9 @@
 
 The following includes details of what has changed in each release.
 
+## 1.2 February 2024
+
+- Include "HH:MM:SS" after total build time in output window.
 
 ## 1.1 - September 2023
 

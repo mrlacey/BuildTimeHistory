@@ -86,7 +86,10 @@ namespace BuildTimeHistory
                     sb.Append($"({latestRecord.SuccessCount} successful, {latestRecord.FailCount} failed, {latestRecord.CancelCount} cancelled) ");
                 }
 
-                sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(latestRecord.CalculatedTotalBuildTime).Humanize()}");
+                var totalBuildTime = TimeSpan.FromMilliseconds(latestRecord.CalculatedTotalBuildTime);
+
+                sb.AppendLine($"taking a total of {totalBuildTime.Humanize()} ({totalBuildTime.Hours:00}:{totalBuildTime.Minutes:00}:{totalBuildTime.Seconds:00})");
+
 
                 await OutputPane.Instance.WriteAsync(sb.ToString());
             }
@@ -259,7 +262,9 @@ namespace BuildTimeHistory
                         sb.Append($"({todaysRecord.SuccessCount} successful, {todaysRecord.FailCount} failed, {todaysRecord.CancelCount} cancelled) ");
                     }
 
-                    sb.AppendLine($"taking a total of {TimeSpan.FromMilliseconds(todaysRecord.CalculatedTotalBuildTime).Humanize()}");
+                    var totalBuildTime = TimeSpan.FromMilliseconds(todaysRecord.CalculatedTotalBuildTime);
+
+                    sb.AppendLine($"taking a total of {totalBuildTime.Humanize()} ({totalBuildTime.Hours:00}:{totalBuildTime.Minutes:00}:{totalBuildTime.Seconds:00})");
 
                     await OutputPane.Instance.WriteAsync(sb.ToString());
                 }
