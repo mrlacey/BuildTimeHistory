@@ -5,6 +5,8 @@ Keep track of the total time spent waiting for code to build.
 ![Works with Visual Studio 2022](https://img.shields.io/static/v1.svg?label=VS&message=2022&color=A853C7)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+[![Build](https://github.com/mrlacey/BuildTimeHistory/actions/workflows/build.yml/badge.svg)](https://github.com/mrlacey/BuildTimeHistory/actions/workflows/build.yml)
+
 ---
 
 A Visual Studio Extension that provides a summary history of all the time spent waiting for code to build each day.
