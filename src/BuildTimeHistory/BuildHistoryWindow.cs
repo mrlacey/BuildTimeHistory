@@ -18,16 +18,10 @@ namespace BuildTimeHistory
     [Guid("6d248884-4d83-4697-860c-06cc61411a1f")]
     public class BuildHistoryWindow : ToolWindowPane
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BuildHistoryWindow"/> class.
-        /// </summary>
         public BuildHistoryWindow() : base(null)
         {
-            this.Caption = "BuildHistoryWindow";
+            this.Caption = "Build History";
 
-            // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
-            // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
-            // the object returned by the Content property.
             this.Content = new BuildHistoryWindowControl();
         }
     }

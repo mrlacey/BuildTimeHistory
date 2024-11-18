@@ -23,7 +23,7 @@ namespace BuildTimeHistory
             => SuccessCount > 0 && (FailCount > 0 || CancelCount > 0) || FailCount > 0 && CancelCount > 0;
 
 #pragma warning disable CS0612 // Type or member is obsolete
-        // Include TBT here so correctly account for days when using old an dnew versions of the extension
+        // Include TBT here so correctly account for days when using old and new versions of the extension
         public double CalculatedTotalBuildTime
             => TotalBuildTime + SuccessBuildTime + FailBuildTime + CancelBuildTime;
 
