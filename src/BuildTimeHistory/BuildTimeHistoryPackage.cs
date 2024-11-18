@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -6,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Humanizer;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -14,7 +17,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace BuildTimeHistory
 {
-    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+	[ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
     // The following AuoLoad attributes are to make sure that all load scenarios are covered.
     // Even launching a .slnf file from the JumpList (which was particularly hard to track down)
     // I'm sure they're not all needed, but as I spent ages slowly adding more until everything worked
@@ -97,9 +100,44 @@ namespace BuildTimeHistory
             {
                 await OutputPane.Instance.WriteAsync("No previous history available.");
             }
-        }
 
-        public int OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded)
+			await TrackBasicUsageAnalyticsAsync();
+		}
+
+		private static async Task TrackBasicUsageAnalyticsAsync()
+		{
+			try
+			{
+#if !DEBUG
+			if (string.IsNullOrWhiteSpace(AnalyticsConfig.TelemetryConnectionString))
+			{
+				return;
+			}
+
+			var config = new TelemetryConfiguration
+			{
+				ConnectionString = AnalyticsConfig.TelemetryConnectionString,
+			};
+
+			var client = new TelemetryClient(config);
+
+			var properties = new Dictionary<string, string>
+				{
+					{ "VsixVersion", Vsix.Version },
+					{ "VsVersion", Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion") },
+				};
+
+			client.TrackEvent(Vsix.Name, properties);
+#endif
+			}
+			catch (Exception exc)
+			{
+				System.Diagnostics.Debug.WriteLine(exc);
+				await OutputPane.Instance.WriteAsync("Error tracking usage analytics: " + exc.Message);
+			}
+		}
+
+		public int OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded)
         {
             return VSConstants.S_OK;
         }
