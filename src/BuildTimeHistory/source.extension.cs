@@ -11,7 +11,7 @@ namespace BuildTimeHistory
         public const string Name = "Build Time History";
         public const string Description = @"Keep track of the total time spent waiting for code to build.";
         public const string Language = "en-US";
-        public const string Version = "1.2";
+        public const string Version = "1.3";
         public const string Author = "Matt Lacey";
         public const string Tags = "";
     }
