@@ -2,13 +2,17 @@
 
 The following includes details of what has changed in each release.
 
-## 1.3 November 2024
+## 1.4 - November 2024
+
+- Added initial graph view of historical data.
+
+## 1.3 - November 2024
 
 - Update minimum supported VS version to 17.6.
 - Address security vulnerabilities in dependent packages.
 - Added basic usage telemetry.
 
-## 1.2 February 2024
+## 1.2 - February 2024
 
 - Include "HH:MM:SS" after total build time in output window.
 
