@@ -47,6 +47,9 @@
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Build History</ButtonText>
+			<CommandName>BuildHistory.ViewGraph</CommandName>
+			<CanonicalName>.BuildHistory.ViewGraph</CanonicalName>
+			<LocCanonicalName>.BuildHistory.ViewGraph</LocCanonicalName>
         </Strings>
       </Button>
     </Buttons>
