@@ -58,6 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildTimeHistoryPackage.vsct</DependentUpon>
     </Compile>
+    <Compile Include="DoubleExtensions.cs" />
     <Compile Include="HistoryRecord.cs" />
     <Compile Include="OutputPane.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

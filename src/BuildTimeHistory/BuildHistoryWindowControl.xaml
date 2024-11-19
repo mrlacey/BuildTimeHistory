@@ -12,7 +12,28 @@
 	Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
 	mc:Ignorable="d">
 	<Grid>
-		<TabControl>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid x:Name="SponsorshipPrompt" Background="LimeGreen">
+			<StackPanel
+				Margin="8"
+				HorizontalAlignment="Center"
+				Orientation="Horizontal">
+				<TextBlock VerticalAlignment="Center" FontWeight="SemiBold">This free extension is made possible thanks to the support of developers like you.</TextBlock>
+				<TextBlock VerticalAlignment="Center" AutomationProperties.Name="This free extension is made possible thanks to the support of developers like you.">
+					<Hyperlink xml:space="default" Click="JoinThemClicked">
+						<Grid Margin="4,1,4,0" Background="Transparent">
+							<TextBlock FontWeight="Bold" Text="Join them" />
+						</Grid>
+					</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+		</Grid>
+
+		<TabControl Grid.Row="1">
 			<TabItem Header="Count of Builds">
 				<Grid
 					x:Name="grid1"
