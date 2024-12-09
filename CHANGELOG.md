@@ -1,6 +1,11 @@
-# Build Time History - Change log
+﻿# Build Time History - Change log
 
 The following includes details of what has changed in each release.
+
+## 1.4.1 - December 2024
+
+- Updated dependencies.
+- Updated usage analytics data.
 
 ## 1.4 - November 2024
 
