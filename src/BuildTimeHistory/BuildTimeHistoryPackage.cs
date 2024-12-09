@@ -55,7 +55,7 @@ namespace BuildTimeHistory
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution2;
+			solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution2;
             solution?.AdviseSolutionEvents(this, out solutionEventsCookie);
 
             sbm = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolutionBuildManager)) as IVsSolutionBuildManager2;
@@ -129,6 +129,8 @@ namespace BuildTimeHistory
 				{
 					{ "VsixVersion", Vsix.Version },
 					{ "VsVersion", Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion") },
+					{ "Architecture", RuntimeInformation.ProcessArchitecture.ToString() },
+					{ "MsInternal", Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.IsUserMicrosoftInternal.ToString() },
 				};
 
 			client.TrackEvent(Vsix.Name, properties);
