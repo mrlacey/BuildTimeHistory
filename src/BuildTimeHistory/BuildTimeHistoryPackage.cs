@@ -55,6 +55,9 @@ namespace BuildTimeHistory
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
+            // TODO: See if this is a better (faster?) way to get the solution path
+			//solution.GetSolutionInfo(out string solutionDirectory, out string solutionFile, out string userOptsFile);
+
 			solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution2;
             solution?.AdviseSolutionEvents(this, out solutionEventsCookie);
 
@@ -193,7 +196,7 @@ namespace BuildTimeHistory
             return VSConstants.S_OK;
         }
 
-        readonly Stopwatch _buildTimer = new Stopwatch();
+        readonly Stopwatch _buildTimer = new();
 
         public int UpdateSolution_Begin(ref int pfCancelUpdate)
         {
