@@ -2,6 +2,10 @@
 
 The following includes details of what has changed in each release.
 
+## 1.5 - February 2025
+
+- Made all internal file IO async to avoid blocking the UI thread.
+
 ## 1.4.1 - December 2024
 
 - Updated dependencies.
