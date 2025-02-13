@@ -46,6 +46,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AsyncFileIo.cs" />
     <Compile Include="BuildHistoryWindow.cs" />
     <Compile Include="BuildHistoryWindowCommand.cs" />
     <Compile Include="BuildHistoryWindowControl.xaml.cs">

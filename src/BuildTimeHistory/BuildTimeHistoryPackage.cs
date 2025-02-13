@@ -336,7 +336,7 @@ namespace BuildTimeHistory
                     Directory.CreateDirectory(dir);
                 }
 
-                File.WriteAllText(path, JsonConvert.SerializeObject(todaysRecord));
+				await AsyncFileIo.WriteAllTextAsync(path, JsonConvert.SerializeObject(todaysRecord));
             }
             catch (Exception exc)
             {
@@ -370,8 +370,8 @@ namespace BuildTimeHistory
 
                     if (File.Exists(path))
                     {
-                        return (JsonConvert.DeserializeObject<HistoryRecord>(File.ReadAllText(path)), i);
-                    }
+                        return (JsonConvert.DeserializeObject<HistoryRecord>(await AsyncFileIo.ReadAllTextAsync(path)), i);
+					}
                 }
             }
             catch (Exception exc)
@@ -393,8 +393,8 @@ namespace BuildTimeHistory
 
                 if (File.Exists(path))
                 {
-                    return JsonConvert.DeserializeObject<HistoryRecord>(File.ReadAllText(path));
-                }
+                    return JsonConvert.DeserializeObject<HistoryRecord>(await AsyncFileIo.ReadAllTextAsync(path));
+				}
             }
             catch (Exception exc)
             {

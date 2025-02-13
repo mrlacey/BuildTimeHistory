@@ -112,7 +112,7 @@ namespace BuildTimeHistory
 
 				if (File.Exists(path))
 				{
-					var data = JsonConvert.DeserializeObject<HistoryRecord>(File.ReadAllText(path));
+					var data = JsonConvert.DeserializeObject<HistoryRecord>(await AsyncFileIo.ReadAllTextAsync(path));
 
 					countChart.Series[cancelCount].Points.AddXY(date, data.CancelCount);
 					countChart.Series[cancelCount].Points[countChart.Series[cancelCount].Points.Count - 1].IsValueShownAsLabel = data.CancelCount > 0 && data.CancelCount != data.TotalCount;
