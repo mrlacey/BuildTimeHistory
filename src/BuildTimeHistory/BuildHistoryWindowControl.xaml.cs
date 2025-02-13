@@ -44,10 +44,10 @@ namespace BuildTimeHistory
 
 			var cancelCount = "Cancelled (Count)";
 			var FailedCount = "Failed (Count)";
-			var SuccedCount = "Succeded (Count)";
+			var SuccedCount = "Succeeded (Count)";
 			var cancelTime = "Cancelled (Time)";
 			var FailedTime = "Failed (Time)";
-			var SuccedTime = "Succeded (Time)";
+			var SuccedTime = "Succeeded (Time)";
 			var TotalCount = "Total count";
 			var TotalTime = "Total time";
 
